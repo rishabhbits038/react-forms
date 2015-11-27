@@ -6,7 +6,7 @@ A simple react project to create forms from a json. Specify the mandatory fields
 Check the console for output.
 
 # Sample Json:
-
+```
   "data": [
     {
       "label": "Name",
@@ -125,7 +125,7 @@ Check the console for output.
   ]
 }
 
-
+```
 
 # Setup
 
