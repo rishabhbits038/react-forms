@@ -20474,14 +20474,15 @@
 	      "elementId": "name",
 	      "type": "SmartInput",
 	      "value": "",
-	      "mandatory": false,
+	      "mandatory": true,
 	      "regex": ""
 	    },
 	    {
-	      "label": "Category Manager",
-	      "elementId": "categoryManager",
+	      "label": "Email",
+	      "elementId": "email",
 	      "type": "SmartInput",
-	      "mandatory": false,
+	      "mandatory": true,
+	      "regex": "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$"
 	    },
 	    {
 	      "label": "Status",
