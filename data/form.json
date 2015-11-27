@@ -1,0 +1,123 @@
+module.exports={
+  "status": {
+    "statusCode": 2003,
+    "statusMessage": "Commitment fetched successfully",
+    "statusType": "SUCCESS",
+    "totalCount": 1
+  },
+  "data": [
+    {
+      "label": "Name",
+      "elementId": "name",
+      "type": "SmartInput",
+      "value": "",
+      "mandatory": false,
+      "regex": ""
+    },
+    {
+      "label": "Category Manager",
+      "elementId": "categoryManager",
+      "type": "SmartInput",
+      "mandatory": false,
+    },
+    {
+      "label": "Status",
+      "elementId": "status",
+      "type": "SmartDropDownSelect",
+      "value": [
+        "DRAFT",
+        "SUBMITTED",
+        "APPROVED",
+        "CANCELLED"
+      ],
+      "mandatory": false,
+      "multiSelect": false,
+      "regex": ""
+    },
+    {
+      "label": "Brand Code",
+      "elementId": "brandCode",
+      "type": "SmartDropDownSelect",
+      "value": [
+        {
+          "1": "SPRD"
+        },
+        {
+          "2": "GAS"
+        },
+        {
+          "3": "GAS"
+        },
+        {
+          "4": "BATA"
+        }
+      ],
+      "mandatory": false,
+      "multiSelect": false,
+      "regex": ""
+    },
+    {
+      "label": "Season",
+      "elementId": "season",
+      "type": "SmartDropDownSelect",
+      "value": [
+        "SPRING",
+        "FW15",
+        "WINTER",
+        "FALL",
+        "SUMMER"
+      ],
+      "mandatory": false,
+      "multiSelect": true,
+      "regex": ""
+    },
+    {
+      "label": "Done",
+      "elementId": "Done",
+      "type": "SmartCheckbox",
+      "value": false
+    },
+    {
+      "label": "Red",
+      "elementId": "Red",
+      "type": "SmartCheckbox",
+      "value": false
+    },
+    {
+      "label": "Blue",
+      "elementId": "Blue",
+      "type": "SmartCheckbox",
+      "value": false
+    },
+    {
+      "label": "Radio Buttons",
+      "elementId": "RadioButton",
+      "type": "SmartRadio",
+      "value": [
+        {
+           "1": "one"
+        },
+        {
+           "2":"two"
+        },
+        {
+            "3":"three"
+        }
+      ]
+    },
+    {
+      "label": "Browse",
+      "elementId": "Browse",
+      "type": "SmartFileInput",
+      "mandatory": false,
+      "multiSelect": false,
+      "theme": "grey"
+    },
+    {
+      "label": "Search",
+      "elementId": "Search",
+      "type": "SmartButton",
+      "theme": "blue"
+    }
+  ]
+}
