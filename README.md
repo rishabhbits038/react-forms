@@ -1,9 +1,13 @@
 # react-forms
 A simple react project to create forms from a json. Specify the mandatory fields, regular expressions, multi select fields from the json itself. 
 
+The components can be used individually as well.
+
 [Live Demo](http://rishabhbits038.github.io/react-forms/)
 
 Check the console for output.
+
+SmartForm can take the json data or the dataUrl that gives the data in the format specified below. data is given preference over dataUrl.
 
 # Sample Json:
 ```
@@ -125,6 +129,11 @@ Check the console for output.
   ]
 }
 
+```
+#Example
+
+```
+<SmartForm data={formData} onClick={this.doAction} title="Upload data"/>
 ```
 
 # Setup
