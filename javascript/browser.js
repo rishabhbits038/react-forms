@@ -20462,12 +20462,6 @@
 /***/ function(module, exports) {
 
 	module.exports={
-	  "status": {
-	    "statusCode": 2003,
-	    "statusMessage": "Commitment fetched successfully",
-	    "statusType": "SUCCESS",
-	    "totalCount": 1
-	  },
 	  "data": [
 	    {
 	      "label": "Name",
@@ -20485,35 +20479,35 @@
 	      "regex": "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$"
 	    },
 	    {
-	      "label": "Status",
-	      "elementId": "status",
+	      "label": "Department",
+	      "elementId": "department",
 	      "type": "SmartDropDownSelect",
 	      "value": [
-	        "DRAFT",
-	        "SUBMITTED",
-	        "APPROVED",
-	        "CANCELLED"
+	        "Computer Science",
+	        "Electrical",
+	        "Mechanical",
+	        "Chemical"
 	      ],
 	      "mandatory": false,
 	      "multiSelect": false,
 	      "regex": ""
 	    },
 	    {
-	      "label": "Brand Code",
-	      "elementId": "brandCode",
+	      "label": "Grade",
+	      "elementId": "grade",
 	      "type": "SmartDropDownSelect",
 	      "value": [
 	        {
-	          "1": "SPRD"
+	          "10": "A"
 	        },
 	        {
-	          "2": "GAS"
+	          "9": "A-"
 	        },
 	        {
-	          "3": "GAS"
+	          "8": "B"
 	        },
 	        {
-	          "4": "BATA"
+	          "7": "B-"
 	        }
 	      ],
 	      "mandatory": false,
@@ -20521,23 +20515,23 @@
 	      "regex": ""
 	    },
 	    {
-	      "label": "Season",
-	      "elementId": "season",
+	      "label": "Month",
+	      "elementId": "month",
 	      "type": "SmartDropDownSelect",
 	      "value": [
-	        "SPRING",
-	        "FW15",
-	        "WINTER",
-	        "FALL",
-	        "SUMMER"
+	        "January",
+	        "February",
+	        "March",
+	        "April",
+	        "May"
 	      ],
 	      "mandatory": false,
 	      "multiSelect": true,
 	      "regex": ""
 	    },
 	    {
-	      "label": "Done",
-	      "elementId": "Done",
+	      "label": "Green",
+	      "elementId": "Green",
 	      "type": "SmartCheckbox",
 	      "value": false
 	    },
@@ -20578,8 +20572,8 @@
 	      "theme": "grey"
 	    },
 	    {
-	      "label": "Search",
-	      "elementId": "Search",
+	      "label": "Submit",
+	      "elementId": "Submit",
 	      "type": "SmartButton",
 	      "theme": "blue"
 	    }
