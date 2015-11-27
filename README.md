@@ -3,7 +3,7 @@ A simple react project to create forms from a json.
 
 # Setup
 
-Clone this repo: git clone 
+Clone this repo: git clone https://github.com/rishabhbits038/react-forms.git
 Run npm install.
 Install webpack globally: npm install webpack -g.
 
