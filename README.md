@@ -1,5 +1,9 @@
 # react-forms
-A simple react project to create forms from a json.
+A simple react project to create forms from a json. Specify the mandatory fields, regular expressions, multi select fields from the json itself. 
+
+[Live Demo](http://rishabhbits038.github.io/react-forms/)
+
+Check the console for output.
 
 # Setup
 
