@@ -20462,12 +20462,6 @@
 /***/ function(module, exports) {
 
 	module.exports={
-	  "status": {
-	    "statusCode": 2003,
-	    "statusMessage": "Commitment fetched successfully",
-	    "statusType": "SUCCESS",
-	    "totalCount": 1
-	  },
 	  "data": [
 	    {
 	      "label": "Name",
@@ -20485,59 +20479,59 @@
 	      "regex": "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$"
 	    },
 	    {
-	      "label": "Status",
-	      "elementId": "status",
+	      "label": "Department",
+	      "elementId": "department",
 	      "type": "SmartDropDownSelect",
 	      "value": [
-	        "DRAFT",
-	        "SUBMITTED",
-	        "APPROVED",
-	        "CANCELLED"
+	        "Computer Science",
+	        "Electrical",
+	        "Mechanical",
+	        "Chemical"
 	      ],
 	      "mandatory": false,
 	      "multiSelect": false,
 	      "regex": ""
 	    },
 	    {
-	      "label": "Brand Code",
-	      "elementId": "brandCode",
+	      "label": "Grade",
+	      "elementId": "grade",
 	      "type": "SmartDropDownSelect",
 	      "value": [
 	        {
-	          "1": "SPRD"
+	          "10": "A"
 	        },
 	        {
-	          "2": "GAS"
+	          "9": "A-"
 	        },
 	        {
-	          "3": "GAS"
+	          "8": "B"
 	        },
 	        {
-	          "4": "BATA"
+	          "7": "B-"
 	        }
 	      ],
-	      "mandatory": false,
+	      "mandatory": true,
 	      "multiSelect": false,
 	      "regex": ""
 	    },
 	    {
-	      "label": "Season",
-	      "elementId": "season",
+	      "label": "Month",
+	      "elementId": "month",
 	      "type": "SmartDropDownSelect",
 	      "value": [
-	        "SPRING",
-	        "FW15",
-	        "WINTER",
-	        "FALL",
-	        "SUMMER"
+	        "January",
+	        "February",
+	        "March",
+	        "April",
+	        "May"
 	      ],
-	      "mandatory": false,
+	      "mandatory": true,
 	      "multiSelect": true,
 	      "regex": ""
 	    },
 	    {
-	      "label": "Done",
-	      "elementId": "Done",
+	      "label": "Green",
+	      "elementId": "Green",
 	      "type": "SmartCheckbox",
 	      "value": false
 	    },
@@ -20578,8 +20572,8 @@
 	      "theme": "grey"
 	    },
 	    {
-	      "label": "Search",
-	      "elementId": "Search",
+	      "label": "Submit",
+	      "elementId": "Submit",
 	      "type": "SmartButton",
 	      "theme": "blue"
 	    }
@@ -20620,12 +20614,10 @@
 	 * #Working example:
 	 * ```
 	 * var React = require('react');
+	 * var SmartForm = require('SmartForm');
 	 *  var FormSample = React.createClass({
 	 * 	doAction: function (e) {
 	 * 		alert("Button Clicked " + e);
-	 * 	},
-	 * 	doChange: function (e) {
-	 * 		alert("Something Changed " + e);
 	 * 	},
 	 * 	render: function () {
 	 * 		var formData = [
@@ -20652,15 +20644,15 @@
 	 * 				"label": "Submit",
 	 * 				"elementId": "Submit",
 	 * 				"type": "SmartButton",
-	 * 				"className": "btn btn-sm blue smartDropZone"
+	 * 				"theme": "smartDropZone"
 	 * 			}
 	 * 		];
 	 * 		return (
-	 * 				<SmartForm data={formData} handleChange={this.doChange} onClick={this.doAction} title="Upload a PSC" actionLabel="Upload"/>
+	 * 				<SmartForm data={formData} onClick={this.doAction} title="Upload a PSC"/>
 	 * 		);
 	 * 	}
 	 * );
-	 * React.render(<HelloMessage name="Sebastian" />, document.getElementById('divContainer'));
+	 * React.render(<FormSample/>, document.getElementById('divContainer'));
 	 * ```
 	 */
 
@@ -20816,24 +20808,39 @@
 	 * SmartInput is the form component for input box.
 	 *
 	 * A working example is:
-	 * <SmartInput onChange={onChangeFunction} elementId="inputKey" containerClass="pscLabel" value={"Sample"} label="Input Label" mandatory=false regex= "" class="temp" placeholder="type text here" clickedSubmit="false"/>
+	 * ```
+	 *  var React = require('react');
+	 *  var SmartInput = require('SmartInput');
+	 *  var SmartInputSample = React.createClass({
+	 * 	doAction: function (e) {
+	 * 		alert(e);
+	 * 	},
+	 * 	render: function () {
+	 * 		return (
+	 * 				<SmartInput onChange={this.doAction} label="Sample label" emelemtId = 'input' value="Sample Value" mandatory=false regex="" className="containerClass" placeholder="type..."/>
+	 * 		);
+	 * 	}
+	 * );
+	 * React.render(<SmartInputSample/>, document.getElementById('divContainer'));
+	 *```
 	 *
 	 * SmartInput passes the data entered in the input box to the parent via the onChange function. This function is called whenever there is some change in the value of the inputbox.
 	 *
-	 * It also tells if there is an error in filling up the input box. This would happen when no data is entered if manadatory tag is set true or if the value set does not meet the regular expression satusfied.
+	 * It also tells if there is an error in filling up the input box. This would happen when no data is entered if manadatory tag is set true or if the value set does not meet the regular expression satisfied.
 	 * The error is displayed only when clickedSubmit is set to true. Otherwise, the error would not be displayed.
 	 *
 	 * handleOnChange is of the form:
 	 * function(result)
 	 *
 	 * result is of the form:
-	 *
+	 * ```
 	 * {
 	 * 	elementId: elementId    // {String} the unique key of the component
 	 * 	value: value  // {String} the current value of the input box.
 	 * 	statusType: "SUCCESS" //{String} SUCCESS or FAILURW
 	 * 	type: 'SmartInput' //tyoe is always smartInput for SmartInput. It is basically the name of the component.
 	 * }
+	 * ```
 	 *
 	 */
 
@@ -20842,6 +20849,10 @@
 
 		propTypes: {
 			/**
+	   * The type which is 'SmartInput'
+	   */
+			type: _react2['default'].PropTypes.oneOf(['SmartInput']),
+			/**
 	   * the label of the input box
 	   */
 			label: _react2['default'].PropTypes.string,
@@ -20849,10 +20860,6 @@
 	   * the unique key of the input box. It is assumed that each form component will have a unique elementId.
 	   */
 			elementId: _react2['default'].PropTypes.string,
-			/**
-	   * the unique id of the input box.
-	   */
-			id: _react2['default'].PropTypes.string,
 			/**
 	   * the default value that the input will have
 	   */
@@ -20868,13 +20875,13 @@
 			/**
 	   * the options css classnames that can be added to the input box container to change its style,
 	   */
-			'class': _react2['default'].PropTypes.string,
+			className: _react2['default'].PropTypes.string,
 			/**
 	   * the placeholder that input box might have.
 	   */
 			placeholder: _react2['default'].PropTypes.string,
 			/**
-	   * send the updated value, along to the smartForm on every change, so that smartForm stores the updated value in its state. function(result)
+	   * send the updated value to the parent on every change. function(result)
 	   */
 			onChange: _react2['default'].PropTypes.func,
 			/**
@@ -21016,24 +21023,41 @@
 	 * SmartDropDownSelect is the form component for DropDown.
 	 *
 	 * A working example is:
-	 * <SmartDropDownSelect onChange={onChangeFunction} Key="DropDownSelectKey" containerClass="pscLabel" value={["Sample"]} label="DropDownLabel" mandatory=false regex= "" class="temp" clickedSubmit="false"/>
-	 *
-	 * SmartInput passes the data entered in the input box to the parent via the onChange function. This function is called whenever there is some change in the value of the inputbox.
+	 * ```
+	 *  var React = require('react');
+	 *  var SmartDropDownSelect = require('SmartDropDownSelect');
+	 *  var SmartDropDownSelectSample = React.createClass({
+	 *  doAction: function (e) {
+	 *      alert(e);
+	 *  },
+	 *  render: function () {
+	 *      return (
+	 *              <SmartDropDownSelect onChange={this.doAction} label="Sample label" elementId = 'drpdn' value=["a","b"] mandatory=false multiSelect =true className="containerClass"/>
+	 *      );
+	 *  }
+	 * );
+	 * React.render(<SmartDropDownSelectSample/>, document.getElementById('divContainer'));
+	 * ```
+	 * SmartDropDownSelect passes the values selected to the parent via the onChange function. This function is called whenever there is some change in the values selected.
 	 *
 	 * It also tells if there is an error in filling up the DropDown. This would happen when no data is entered if manadatory tag is set true.
 	 * The error is displayed only when clickedSubmit is set to true. Otherwise, the error would not be displayed.
 	 *
 	 * handleOnChange is of the form:
+	 * ```
 	 * function(result)
+	 * ```
 	 *
 	 * result is of the form:
 	 *
+	 * ```
 	 * {
-	 * 	elementId: elementId    // {String} the unique key of the component
-	 * 	value: value  // {String} the current value of the input box.
-	 * 	statusType: "SUCCESS" //{String} SUCCESS or FAILURW
-	 * 	type: 'SmartInput' //tyoe is always smartInput for SmartInput. It is basically the name of the component.
+	 *  elementId: elementId    // {String} the unique key of the component
+	 *  value: value  // {String} the current values selected in the dropdown.
+	 *  statusType: "SUCCESS" //{String} SUCCESS or FAILURE
+	 *  type: 'SmartDropDownSelect' //type is always SmartDropDownSelect for SmartDropDownSelect. It is basically the name of the component.
 	 * }
+	 * ```
 	 *
 	 */
 
@@ -21041,6 +21065,10 @@
 	var SmartDropDownSelect = React.createClass({
 	    displayName: 'SmartDropDownSelect',
 	    propTypes: {
+	        /**
+	         * The type which is 'SmartDropDownSelect'
+	         */
+	        type: React.PropTypes.oneOf(['SmartDropDownSelect']),
 	        /**
 	         * the label of the Dropdown.
 	         */
@@ -21050,25 +21078,25 @@
 	         */
 	        elementId: React.PropTypes.string,
 	        /**
-	         * the unique id of the Dropdown.
+	         * the set of possible values in the dropdown .
 	         */
-	        value: React.PropTypes.array,
+	        value: React.PropTypes.oneOfType([React.PropTypes.arrayOf(React.PropTypes.string), React.PropTypes.arrayOf(React.PropTypes.object)]),
 	        /**
 	         * true if value is required in the Dropdown, false otherwise
 	         */
 	        mandatory: React.PropTypes.bool,
 	        /**
-	         * the regular expression passes as a string that the entered value in the input box must satisty.
-	         */
-	        regex: React.PropTypes.string,
-	        /**
 	         * the options css classnames that can be added to the Dropdown container to change its style,
 	         */
-	        'class': React.PropTypes.string,
+	        className: React.PropTypes.string,
 	        /**
 	         * send the updated value, along eith the key to the parent on every change.  function(result)
 	         */
 	        onChange: React.PropTypes.func,
+	        /**
+	         * true is multiple elements are to be selected. false otherwise.
+	         */
+	        multiSelect: React.PropTypes.bool,
 	        /**
 	         * true if the form button has been clicked, which tells the inputbox to render the error if true. If this is false, error would not be rendered. This is to ensure that the form tells that the components have not been filled up properly only when the submit button(or any other button) is clicked. By default, it is false.
 	         */
@@ -22248,9 +22276,9 @@
 /* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var _react = __webpack_require__(1);
 
@@ -22260,39 +22288,62 @@
 	 * SmartButton is a component that is a wrapper over a button, which tells the parent the key of the button clicked.constructor
 	 *
 	 * Working example:
+	 * ```
+	 *  var React = require('react');
+	 *  var SmartButton = require('SmartButton');
+	 *  var SmartButtonSample = React.createClass({
+	 *  doAction: function (e) {
+	 *      alert(e);
+	 *  },
+	 *  render: function () {
+	 *      return (
+	 *              <SmartButton onClick={this.doAction} label="Button" emelentId = 'btn' value="Sample Value" mandatory=false regex="" className="containerClass" placeholder="type..."/>
+	 *      );
+	 *  }
+	 * );
+	 * React.render(<SmartInputSample/>, document.getElementById('divContainer'));
+	 * ```
 	 *
-	 * <SmartButton label= "Save Changes" Key="Update" className="blue smartDropZone" onClick={this.updatePSC} />
+	 * onClick is of the form:
+	 *
+	 * ```
+	 * function(elementId, event);
+	 * ```
 	 *
 	 */
 
-	var SmartButton = _react2["default"].createClass({
-	    displayName: "SmartButton",
+	var SmartButton = _react2['default'].createClass({
+	    displayName: 'SmartButton',
 
 	    propTypes: {
 	        /**
+	         * The type which is 'SmartButton'
+	         */
+	        type: _react2['default'].PropTypes.oneOf(['SmartButton']),
+	        /**
 	         * the text to be displayed inside the button
 	         */
-	        label: _react2["default"].PropTypes.string,
+	        label: _react2['default'].PropTypes.string,
 	        /**
 	         * the unique elementId of the button
 	         */
-	        elementId: _react2["default"].PropTypes.string,
+	        elementId: _react2['default'].PropTypes.string,
 	        /**
 	         * 'SmartButton'
 	         */
-	        type: _react2["default"].PropTypes.string,
+	        type: _react2['default'].PropTypes.oneOf(['SmartButton']),
 	        /**
 	         * the className, you want to give the container of button.
 	         */
-	        className: _react2["default"].PropTypes.string,
+	        className: _react2['default'].PropTypes.string,
 	        /**
 	         * this function passes the key of the clicked button to the parent along the the entire event. the function id of the form: function()(key, event)
 	         */
-	        onClick: _react2["default"].PropTypes.func,
+	        onClick: _react2['default'].PropTypes.func,
 	        /**
 	         * The color we want to give to the button. Example : theme="red" if we want to add a red color to the button.
 	         */
-	        theme: _react2["default"].PropTypes.string
+	        theme: _react2['default'].PropTypes.string
 
 	    },
 	    getDefaultProps: function getDefaultProps() {
@@ -22313,11 +22364,11 @@
 
 	    render: function render() {
 	        var containerClass = this.props.className ? this.props.className : this.state.containerClass;
-	        return _react2["default"].createElement(
-	            "div",
+	        return _react2['default'].createElement(
+	            'div',
 	            { className: containerClass },
-	            _react2["default"].createElement(
-	                "button",
+	            _react2['default'].createElement(
+	                'button',
 	                { className: this.state.defaultClass + " " + this.props.theme, onClick: this.handleButtonClick },
 	                this.props.label
 	            )
@@ -22335,9 +22386,70 @@
 
 	var React = __webpack_require__(1);
 
+	/**
+	 * SmarCheckbox is a component that is a wrapper over a checkbox.
+	 *
+	 * Working example:
+	 *```
+	 *  var React = require('react');
+	 *  var SmartCheckBox = require('SmartCheckBox');
+	 *  var SmartCheckBoxSample = React.createClass({
+	 * 	doAction: function (e) {
+	 * 		alert(e);
+	 * 	},
+	 * 	render: function () {
+	 * 		return (
+	 * 				<SmartCheckBox onChange={this.doAction} value=true label="Button" elementId = 'box' className="containerClass" onChange = this.doAction/>
+	 * 		);
+	 * 	}
+	 * );
+	 * React.render(<SmartCheckBoxSample/>, document.getElementById('divContainer'));
+	 * ```
+	 *
+	 * onChange is of the form:
+	 * ```
+	 * function(data)
+	 * ```
+	 * data is of the form:
+	 * ```
+	 * {
+	 * 	elementId: elementId    // {String} the unique key of the component
+	 * 	value: value  // {String} the current value of the CheckBox.
+	 * 	statusType: "SUCCESS" //{String} SUCCESS or FAILURE
+	 * 	type: 'SmartCheckbox' //type is always 'SmartCheckbox' for SmartCheckbox. It is basically the name of the component.
+	 * }
+	 * ```
+	 */
+
 	var CheckBox = React.createClass({
 		displayName: 'CheckBox',
 
+		propTypes: {
+			/**
+	   * The type which is 'SmartCheckbox'
+	   */
+			type: React.PropTypes.oneOf(['SmartCheckbox']),
+			/**
+	   * the label of the input box
+	   */
+			label: React.PropTypes.string,
+			/**
+	   * the unique key of the check box. It is assumed that each form component will have a unique elementId.
+	   */
+			elementId: React.PropTypes.string,
+			/**
+	   * the default value that the checkbox will have
+	   */
+			value: React.PropTypes.bool,
+			/**
+	   * the options css classnames that can be added to the check box container to change its style,
+	   */
+			className: React.PropTypes.string,
+			/**
+	   * send the updated value to the parent on every change. function(result)
+	   */
+			onChange: React.PropTypes.func
+		},
 		getDefaultProps: function getDefaultProps() {
 			return {
 				label: ""
@@ -22352,7 +22464,8 @@
 			this.props.onChange && this.props.onChange(result);
 			return {
 				value: false,
-				firstFlag: true
+				firstFlag: true,
+				containerClass: "smartCheckBoxContainer"
 			};
 		},
 		componentDidMount: function componentDidMount() {
@@ -22371,9 +22484,11 @@
 			this.props.onChange && this.props.onChange(result);
 		},
 		render: function render() {
+			var containerClass = this.props.className ? this.props.className : this.state.containerClass;
+
 			return React.createElement(
 				'div',
-				{ className: 'smartCheckBoxContainer' },
+				{ className: containerClass },
 				React.createElement(
 					'div',
 					{ className: 'md-checkbox', onClick: this.handleOnClick },
@@ -22405,9 +22520,76 @@
 
 	var React = __webpack_require__(1);
 
+	/**
+	 * SmartRadio is the form component for radio box.
+	 *
+	 * A working example is:
+	 * ```
+	 *  var React = require('react');
+	 *  var SmartRadio = require('SmartRadio');
+	 *  var SmartRadioSample = React.createClass({
+	 *  doAction: function (e) {
+	 *      alert(e);
+	 *  },
+	 *  render: function () {
+	 *      return (
+	 *              <SmartRadio onChange={this.doAction} selectedIndex=2 label="Sample label" elementId = 'radio' value=["one", "two", "three"] className="containerClass" placeholder="type..."/>
+	 *      );
+	 *  }
+	 * );
+	 * React.render(<SmartRadioSample/>, document.getElementById('divContainer'));
+	 *```
+	 *
+	 * SmartRadio passes the value selectesto the parent via the onChange function. This function is called whenever there is change in the radio button selected.
+	 *
+	 * handleOnChange is of the form:
+	 * function(result)
+	 *
+	 * result is of the form:
+	 * ```
+	 * {
+	 *  elementId: elementId    // {String} the unique key of the component
+	 *  value: value  // {String} the current value of the input box.
+	 *  statusType: "SUCCESS" //{String} SUCCESS or FAILURE
+	 *  type: 'SmarRadio' //tyoe is always SmarRadio for SmarRadio. It is basically the name of the component.
+	 * }
+	 * ```
+	 *
+	 */
+
 	var RadioButton = React.createClass({
 	    displayName: 'RadioButton',
 
+	    propTypes: {
+	        /**
+	         * The type which is 'SmartRadio'
+	         */
+	        type: React.PropTypes.oneOf(['SmartRadio']),
+	        /**
+	         * the label of the radio button box.
+	         */
+	        label: React.PropTypes.string,
+	        /**
+	         * the unique key of the radio button box. It is assumed that each form component will have a unique elementId.
+	         */
+	        elementId: React.PropTypes.string,
+	        /**
+	         * the options css classnames that can be added to the radio button box container to change its style,
+	         */
+	        className: React.PropTypes.string,
+	        /**
+	         * send the updated value to the parent on every change. function(result)
+	         */
+	        onChange: React.PropTypes.func,
+	        /**
+	         * the index that should be selected by default
+	         */
+	        selectedIndex: React.PropTypes.number,
+	        /**
+	         * the set of possible values in the radio button box .
+	         */
+	        value: React.PropTypes.oneOfType([React.PropTypes.arrayOf(React.PropTypes.string), React.PropTypes.arrayOf(React.PropTypes.object)])
+	    },
 	    getDefaultProps: function getDefaultProps() {
 	        return {
 	            label: "",
@@ -22514,9 +22696,87 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var SmartInput = _react2['default'].createClass({
-	    displayName: 'SmartInput',
+	/**
+	 * SmartFileInput is the form component for input file box.
+	 *
+	 * A working example is:
+	 * ```
+	 *  var React = require('react');
+	 *  var SmartFileInput = require('SmartFileInput');
+	 *  var SmartInputSample = React.createClass({
+	 *  doAction: function (e) {
+	 *      alert(e);
+	 *  },
+	 *  render: function () {
+	 *      return (
+	 *              <SmartFileInput onChange={this.doAction} label="Sample label" elementId = 'fileInput' mandatory=false multiSelect = true className="containerClass" theme="grey"/>
+	 *      );
+	 *  }
+	 * );
+	 * React.render(<SmartFileInputSample/>, document.getElementById('divContainer'));
+	 *```
+	 *
+	 * SmartFileInput passes the file chosen to the parent via the onChange function. This function is called whenever there is some change in the value of the inputbox.
+	 *
+	 * It also tells if there is an error in filling up the input box. This would happen when no file is selected if manadatory tag is set true.
+	 * The error is displayed only when clickedSubmit is set to true. Otherwise, the error would not be displayed.
+	 *
+	 * handleOnChange is of the form:
+	 * function(result)
+	 *
+	 * result is of the form:
+	 * ```
+	 * {
+	 *  elementId: elementId    // {String} the unique key of the component
+	 *  value: value  // {String} the current value of the input box.
+	 *  statusType: "SUCCESS" //{String} SUCCESS or FAILURW
+	 *  type: 'SmartFileInput' //tyoe is always smartInput for SmartInput. It is basically the name of the component.
+	 * }
+	 * ```
+	 *
+	 */
 
+	var SmartFileInput = _react2['default'].createClass({
+	    displayName: 'SmartFileInput',
+
+	    propTypes: {
+	        /**
+	         * The type which is 'SmartFileInput'
+	         */
+	        type: _react2['default'].PropTypes.oneOf(['SmartFileInput']),
+	        /**
+	         * the label of the input box
+	         */
+	        label: _react2['default'].PropTypes.string,
+	        /**
+	         * the unique key of the input file box. It is assumed that each form component will have a unique elementId.
+	         */
+	        elementId: _react2['default'].PropTypes.string,
+	        /**
+	         * true if file is required to be selected, false otherwise
+	         */
+	        mandatory: _react2['default'].PropTypes.bool,
+	        /**
+	         * the options css classnames that can be added to the input file box container to change its style,
+	         */
+	        className: _react2['default'].PropTypes.string,
+	        /**
+	         * send the updated value to the parent on every change. function(result)
+	         */
+	        onChange: _react2['default'].PropTypes.func,
+	        /**
+	         * true if the form button has been clicked, which tells the input file box to render the error if true. If this is false, error would not be rendered. This is to ensure that the form tells that the components have not been filled up properly only when the submit button(or any other button) is clicked. By default, it is false.
+	         */
+	        clickedSubmit: _react2['default'].PropTypes.bool,
+	        /**
+	         * true if it is allowed to select multiple files.
+	         */
+	        multiSelect: _react2['default'].PropTypes.bool,
+	        /**
+	         * The color we want to give to the button. Example : theme="red" if we want to add a red color to the button.
+	         */
+	        theme: _react2['default'].PropTypes.string
+	    },
 	    handleOnClick: function handleOnClick(event) {
 	        var fileInput = _react2['default'].findDOMNode(this.refs.fileInput);
 	        fileInput.click();
@@ -22621,7 +22881,7 @@
 	    }
 	});
 
-	module.exports = SmartInput;
+	module.exports = SmartFileInput;
 
 /***/ },
 /* 170 */

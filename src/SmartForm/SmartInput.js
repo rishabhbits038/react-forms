@@ -4,29 +4,48 @@ import React from 'react';
  * SmartInput is the form component for input box.
  *
  * A working example is:
- * <SmartInput onChange={onChangeFunction} elementId="inputKey" containerClass="pscLabel" value={"Sample"} label="Input Label" mandatory=false regex= "" class="temp" placeholder="type text here" clickedSubmit="false"/>
+ * ```
+ *  var React = require('react');
+ *  var SmartInput = require('SmartInput');
+ *  var SmartInputSample = React.createClass({
+ * 	doAction: function (e) {
+ * 		alert(e);
+ * 	},
+ * 	render: function () {
+ * 		return (
+ * 				<SmartInput onChange={this.doAction} label="Sample label" emelemtId = 'input' value="Sample Value" mandatory=false regex="" className="containerClass" placeholder="type..."/>
+ * 		);
+ * 	}
+ * );
+ * React.render(<SmartInputSample/>, document.getElementById('divContainer'));
+ *```
  *
  * SmartInput passes the data entered in the input box to the parent via the onChange function. This function is called whenever there is some change in the value of the inputbox.
  *
- * It also tells if there is an error in filling up the input box. This would happen when no data is entered if manadatory tag is set true or if the value set does not meet the regular expression satusfied.
+ * It also tells if there is an error in filling up the input box. This would happen when no data is entered if manadatory tag is set true or if the value set does not meet the regular expression satisfied.
  * The error is displayed only when clickedSubmit is set to true. Otherwise, the error would not be displayed.
  *
  * handleOnChange is of the form:
  * function(result)
  *
  * result is of the form:
- *
+ * ```
  * {
  * 	elementId: elementId    // {String} the unique key of the component
  * 	value: value  // {String} the current value of the input box.
  * 	statusType: "SUCCESS" //{String} SUCCESS or FAILURW
  * 	type: 'SmartInput' //tyoe is always smartInput for SmartInput. It is basically the name of the component.
  * }
+ * ```
  *
  */
 
 var SmartInput = React.createClass({
 	propTypes: {
+		/**
+		 * The type which is 'SmartInput'
+		 */
+		type: React.PropTypes.oneOf(['SmartInput']),
 		/**
 		 * the label of the input box
 		 */
@@ -35,10 +54,6 @@ var SmartInput = React.createClass({
 		 * the unique key of the input box. It is assumed that each form component will have a unique elementId.
 		 */
 		elementId: React.PropTypes.string,
-		/**
-		 * the unique id of the input box.
-		 */
-		id: React.PropTypes.string,
 		/**
 		 * the default value that the input will have
 		 */
@@ -54,13 +69,13 @@ var SmartInput = React.createClass({
 		/**
 		 * the options css classnames that can be added to the input box container to change its style,
 		 */
-		class: React.PropTypes.string,
+		className: React.PropTypes.string,
 		/**
 		 * the placeholder that input box might have.
 		 */
 		placeholder: React.PropTypes.string,
 		/**
-		 * send the updated value, along to the smartForm on every change, so that smartForm stores the updated value in its state. function(result)
+		 * send the updated value to the parent on every change. function(result)
 		 */
 		onChange: React.PropTypes.func,
 		/**

@@ -23,12 +23,10 @@ var Components = {
  * #Working example:
  * ```
  * var React = require('react');
+ * var SmartForm = require('SmartForm');
  *  var FormSample = React.createClass({
  * 	doAction: function (e) {
  * 		alert("Button Clicked " + e);
- * 	},
- * 	doChange: function (e) {
- * 		alert("Something Changed " + e);
  * 	},
  * 	render: function () {
  * 		var formData = [
@@ -55,15 +53,15 @@ var Components = {
  * 				"label": "Submit",
  * 				"elementId": "Submit",
  * 				"type": "SmartButton",
- * 				"className": "btn btn-sm blue smartDropZone"
+ * 				"theme": "smartDropZone"
  * 			}
  * 		];
  * 		return (
- * 				<SmartForm data={formData} handleChange={this.doChange} onClick={this.doAction} title="Upload a PSC" actionLabel="Upload"/>
+ * 				<SmartForm data={formData} onClick={this.doAction} title="Upload a PSC"/>
  * 		);
  * 	}
  * );
- * React.render(<HelloMessage name="Sebastian" />, document.getElementById('divContainer'));
+ * React.render(<FormSample/>, document.getElementById('divContainer'));
  * ```
  */
 

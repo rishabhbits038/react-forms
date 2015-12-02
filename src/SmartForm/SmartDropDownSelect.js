@@ -6,30 +6,51 @@ import Select from 'react-select';
  * SmartDropDownSelect is the form component for DropDown.
  *
  * A working example is:
- * <SmartDropDownSelect onChange={onChangeFunction} Key="DropDownSelectKey" containerClass="pscLabel" value={["Sample"]} label="DropDownLabel" mandatory=false regex= "" class="temp" clickedSubmit="false"/>
- *
- * SmartInput passes the data entered in the input box to the parent via the onChange function. This function is called whenever there is some change in the value of the inputbox.
+ * ```
+ *  var React = require('react');
+ *  var SmartDropDownSelect = require('SmartDropDownSelect');
+ *  var SmartDropDownSelectSample = React.createClass({
+ *  doAction: function (e) {
+ *      alert(e);
+ *  },
+ *  render: function () {
+ *      return (
+ *              <SmartDropDownSelect onChange={this.doAction} label="Sample label" elementId = 'drpdn' value=["a","b"] mandatory=false multiSelect =true className="containerClass"/>
+ *      );
+ *  }
+ * );
+ * React.render(<SmartDropDownSelectSample/>, document.getElementById('divContainer'));
+ * ```
+ * SmartDropDownSelect passes the values selected to the parent via the onChange function. This function is called whenever there is some change in the values selected.
  *
  * It also tells if there is an error in filling up the DropDown. This would happen when no data is entered if manadatory tag is set true.
  * The error is displayed only when clickedSubmit is set to true. Otherwise, the error would not be displayed.
  *
  * handleOnChange is of the form:
+ * ```
  * function(result)
+ * ```
  *
  * result is of the form:
  *
+ * ```
  * {
- * 	elementId: elementId    // {String} the unique key of the component
- * 	value: value  // {String} the current value of the input box.
- * 	statusType: "SUCCESS" //{String} SUCCESS or FAILURW
- * 	type: 'SmartInput' //tyoe is always smartInput for SmartInput. It is basically the name of the component.
+ *  elementId: elementId    // {String} the unique key of the component
+ *  value: value  // {String} the current values selected in the dropdown.
+ *  statusType: "SUCCESS" //{String} SUCCESS or FAILURE
+ *  type: 'SmartDropDownSelect' //type is always SmartDropDownSelect for SmartDropDownSelect. It is basically the name of the component.
  * }
+ * ```
  *
  */
 
 var SmartDropDownSelect = React.createClass({
     displayName: 'SmartDropDownSelect',
     propTypes: {
+        /**
+         * The type which is 'SmartDropDownSelect'
+         */
+        type: React.PropTypes.oneOf(['SmartDropDownSelect']),
         /**
          * the label of the Dropdown.
          */
@@ -39,25 +60,28 @@ var SmartDropDownSelect = React.createClass({
          */
         elementId: React.PropTypes.string,
         /**
-         * the unique id of the Dropdown.
+         * the set of possible values in the dropdown .
          */
-        value: React.PropTypes.array,
+        value: React.PropTypes.oneOfType([
+            React.PropTypes.arrayOf(React.PropTypes.string),
+            React.PropTypes.arrayOf(React.PropTypes.object)
+        ]),
         /**
          * true if value is required in the Dropdown, false otherwise
          */
         mandatory: React.PropTypes.bool,
         /**
-         * the regular expression passes as a string that the entered value in the input box must satisty.
-         */
-        regex: React.PropTypes.string,
-        /**
          * the options css classnames that can be added to the Dropdown container to change its style,
          */
-        class: React.PropTypes.string,
+        className: React.PropTypes.string,
         /**
          * send the updated value, along eith the key to the parent on every change.  function(result)
          */
         onChange: React.PropTypes.func,
+        /**
+         * true is multiple elements are to be selected. false otherwise.
+         */
+        multiSelect: React.PropTypes.bool,
         /**
          * true if the form button has been clicked, which tells the inputbox to render the error if true. If this is false, error would not be rendered. This is to ensure that the form tells that the components have not been filled up properly only when the submit button(or any other button) is clicked. By default, it is false.
          */

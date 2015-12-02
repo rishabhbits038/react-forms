@@ -47,7 +47,7 @@ module.exports={
           "7": "B-"
         }
       ],
-      "mandatory": false,
+      "mandatory": true,
       "multiSelect": false,
       "regex": ""
     },
@@ -62,7 +62,7 @@ module.exports={
         "April",
         "May"
       ],
-      "mandatory": false,
+      "mandatory": true,
       "multiSelect": true,
       "regex": ""
     },
