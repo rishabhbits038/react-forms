@@ -106,13 +106,13 @@ module.exports={
       "type": "SmartFileInput",
       "mandatory": false,
       "multiSelect": false,
-      "theme": "grey"
+      "theme": "btn-default"
     },
     {
       "label": "Submit",
       "elementId": "Submit",
       "type": "SmartButton",
-      "theme": "blue"
+      "theme": "btn-info"
     }
   ]
 }

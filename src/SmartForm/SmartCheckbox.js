@@ -78,7 +78,6 @@ var CheckBox = React.createClass({
 		this.props.onChange && this.props.onChange(result);
 		return{
 			value:false,
-			firstFlag: true,
 			containerClass: "smartCheckBoxContainer"
 		}
 	},
@@ -88,6 +87,9 @@ var CheckBox = React.createClass({
 		});
 	},
 	handleOnClick: function(event) {
+		debugger;
+		event.preventDefault();
+		console.log(this.state.value);
 		var value = !this.state.value;
 		this.setState({value: value});
 		var result={};
@@ -102,14 +104,14 @@ var CheckBox = React.createClass({
 
 		return (
 			<div className={containerClass}>
-				<div className="md-checkbox" onClick={this.handleOnClick} >
-					<input type="checkbox" id={this.props.elementId} className="md-check" checked={this.state.value} />
-					<label for={this.props.elementId}>
-						<span className="inc"></span>
-						<span className="check"></span>
-						<span className="box"></span>
-						<div className ="textClass">{this.props.label}</div>
-					</label>
+				<div className = 'checkbox'>
+					<label onClick={this.handleOnClick}>
+	                    <input type="checkbox" checked={this.state.value}/>
+	                    <span className="checkbox-material">
+	                    	<span className="check"></span>
+	                    </span>
+	                    <span className ="textClassCheckbox">{this.props.label}</span>
+	                </label>
 				</div>
 			</div>
 		)

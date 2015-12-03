@@ -20569,13 +20569,13 @@
 	      "type": "SmartFileInput",
 	      "mandatory": false,
 	      "multiSelect": false,
-	      "theme": "grey"
+	      "theme": "btn-default"
 	    },
 	    {
 	      "label": "Submit",
 	      "elementId": "Submit",
 	      "type": "SmartButton",
-	      "theme": "blue"
+	      "theme": "btn-info"
 	    }
 	  ]
 	}
@@ -22354,7 +22354,7 @@
 	    },
 	    getInitialState: function getInitialState() {
 	        return {
-	            defaultClass: "btn btn-sm",
+	            defaultClass: "btn btn-raised btn-sm",
 	            containerClass: "smartButtonContainer"
 	        };
 	    },
@@ -22368,7 +22368,7 @@
 	            'div',
 	            { className: containerClass },
 	            _react2['default'].createElement(
-	                'button',
+	                'a',
 	                { className: this.state.defaultClass + " " + this.props.theme, onClick: this.handleButtonClick },
 	                this.props.label
 	            )
@@ -22464,7 +22464,6 @@
 			this.props.onChange && this.props.onChange(result);
 			return {
 				value: false,
-				firstFlag: true,
 				containerClass: "smartCheckBoxContainer"
 			};
 		},
@@ -22474,6 +22473,9 @@
 			});
 		},
 		handleOnClick: function handleOnClick(event) {
+			debugger;
+			event.preventDefault();
+			console.log(this.state.value);
 			var value = !this.state.value;
 			this.setState({ value: value });
 			var result = {};
@@ -22491,17 +22493,19 @@
 				{ className: containerClass },
 				React.createElement(
 					'div',
-					{ className: 'md-checkbox', onClick: this.handleOnClick },
-					React.createElement('input', { type: 'checkbox', id: this.props.elementId, className: 'md-check', checked: this.state.value }),
+					{ className: 'checkbox' },
 					React.createElement(
 						'label',
-						{ 'for': this.props.elementId },
-						React.createElement('span', { className: 'inc' }),
-						React.createElement('span', { className: 'check' }),
-						React.createElement('span', { className: 'box' }),
+						{ onClick: this.handleOnClick },
+						React.createElement('input', { type: 'checkbox', checked: this.state.value }),
 						React.createElement(
-							'div',
-							{ className: 'textClass' },
+							'span',
+							{ className: 'checkbox-material' },
+							React.createElement('span', { className: 'check' })
+						),
+						React.createElement(
+							'span',
+							{ className: 'textClassCheckbox' },
 							this.props.label
 						)
 					)
@@ -22643,20 +22647,15 @@
 	            }
 	            var checked = index === _this.state.selectedIndex;
 	            return React.createElement(
-	                'div',
-	                { className: 'md-radio', value: index, onClick: _this.handleOnClick },
-	                React.createElement('input', { type: 'radio', name: _this.props.elementId, value: temp['value'], checked: checked, className: 'md-radiobtn' }),
+	                'label',
+	                { value: index, onClick: _this.handleOnClick },
+	                React.createElement('input', { type: 'radio', name: _this.props.elementId, value: temp['value'], checked: checked }),
+	                React.createElement('span', { className: 'circle' }),
+	                React.createElement('span', { className: 'check' }),
 	                React.createElement(
-	                    'label',
-	                    null,
-	                    React.createElement('span', { className: 'inc' }),
-	                    React.createElement('span', { className: 'check' }),
-	                    React.createElement('span', { className: 'box' }),
-	                    React.createElement(
-	                        'div',
-	                        null,
-	                        temp['label']
-	                    )
+	                    'div',
+	                    { className: 'textClassRadio' },
+	                    temp['label']
 	                )
 	            );
 	        });
@@ -22671,7 +22670,7 @@
 	            ),
 	            React.createElement(
 	                'div',
-	                { className: 'md-radio-inline' },
+	                { className: 'radio radio-primary' },
 	                radioArray
 	            )
 	        );
@@ -22844,7 +22843,7 @@
 	            error: error,
 	            errorMessage: errorMessage,
 	            value: null,
-	            defaultClass: "btn btn-sm",
+	            defaultClass: "btn btn-sm btn-raised",
 	            containerClass: "smartButtonContainer"
 	        };
 	    },

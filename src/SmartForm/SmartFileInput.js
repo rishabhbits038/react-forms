@@ -152,7 +152,7 @@ var SmartFileInput = React.createClass({
             error: error,
             errorMessage: errorMessage,
             value: null,
-            defaultClass:"btn btn-sm",
+            defaultClass:"btn btn-sm btn-raised",
             containerClass: "smartButtonContainer"
         });
     },

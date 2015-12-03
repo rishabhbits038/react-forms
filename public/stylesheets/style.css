@@ -16,7 +16,7 @@ a {
 }
 
 .fileUploadName {
-  margin: 0 5px;
+  margin: 0 5px 8px 0px;
   border-bottom: 1px solid #e5e5e5;
   display: inline-block;
   vertical-align: bottom;
@@ -44,12 +44,13 @@ input {
   min-width: 70px;
   display: inline-block;
   vertical-align: top;
-  margin: 34px 10px 0px 10px;
+  margin: 25px 10px 0px 10px;
 }
 
 .smartCheckBoxContainer {
   display: inline-block;
-  margin: 42px 5px 0px;
+  margin: 31px 5px 0px;
+  vertical-align: top;
 }
 
 .radioContainer {
@@ -57,12 +58,20 @@ input {
   margin: 13px 5px 0 ;
 }
 
-.textClass {
+.textClassCheckbox {
   font-size: 13px;
+  color:black;
+  margin-left: 7px;
+}
+
+.textClassRadio {
+  font-size: 13px;
+  color:black;
+  margin-left: -10px;
 }
 
 .borderClass {
-  margin: 100px 50px;
+  margin: 50px 0px;
 	border: 2px solid #e5e5e5;
   padding: 15px;
 }

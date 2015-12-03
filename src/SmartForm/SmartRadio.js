@@ -123,22 +123,20 @@ var RadioButton = React.createClass({
             }
             var checked = index===this.state.selectedIndex;
             return (
-                <div className="md-radio" value={index} onClick={this.handleOnClick}>
-                    <input type="radio" name={this.props.elementId} value={temp['value']} checked={checked} className="md-radiobtn"/>
-                    <label>
-                        <span className="inc"></span>
-                        <span className="check"></span>
-                        <span className="box"></span>
-                        <div>{temp['label']}</div>
-                    </label>
-                </div>
+                <label value={index} onClick={this.handleOnClick}>
+                    <input type="radio" name={this.props.elementId}  value={temp['value']} checked={checked}/>
+                    <span className="circle"></span>
+                    <span className="check"></span>
+                    <div className = "textClassRadio">{temp['label']}</div>
+                </label>
             );
         });
 
         return (
+
             <div className="radioContainer">
                 <div>{this.props.label}</div>
-                <div className="md-radio-inline">
+                <div className="radio radio-primary">
                     {radioArray}
                 </div>
             </div>

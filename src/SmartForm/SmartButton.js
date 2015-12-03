@@ -68,7 +68,7 @@ var SmartButton = React.createClass({
     },
     getInitialState: function(){
         return({
-            defaultClass:"btn btn-sm",
+            defaultClass:"btn btn-raised btn-sm",
             containerClass: "smartButtonContainer"
         });
     },
@@ -80,7 +80,7 @@ var SmartButton = React.createClass({
         var containerClass = this.props.className? this.props.className: this.state.containerClass ;
         return (
             <div className={containerClass}>
-                <button className={this.state.defaultClass+ " "+this.props.theme} onClick = {this.handleButtonClick}>{this.props.label}</button>
+                <a className={this.state.defaultClass+ " "+this.props.theme} onClick = {this.handleButtonClick}>{this.props.label}</a>
             </div>
         );
     }
